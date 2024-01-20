@@ -30,25 +30,24 @@ describe('Adding user', function(){
         const user = new AddUserPage()
 
         
-        const firstName = FakerUtils.generateName()
         const lastName = FakerUtils.generateSurname();
         const email = FakerUtils.generateEmail();
         const username = FakerUtils.generateUsername();
 
-        user.addUserBtn().click()
-        user.firstNameInpt().type(firstName)
-        user.lastNameInpt().type(lastName)
-        user.emailInpt().type(email)
-        user.userNameInpt().type(username)
-        user.descriptionInp().type('The best training student')
-        user.userTypeDrpd().first().click()
-        user.selectType().click();
-        user.timeZoneDrpd().click()
-        user.selectTimeZone().click()
-        user.langDrpd().click()
-        user.selectLang().click()
-        user.excludeCheckBox().click()
-        user.addUserSbmt().click()
-        cy.contains(lastName).should('be.visible')
+        user.clickAddUserBtn()
+            .enterFirstName()
+            .enterLastName()
+            .enterEmail()
+            .enterUserName()
+            .descriptionInp()
+            .clickUserTypeDrpd()
+            .selectType()
+            .timeZoneDrpd()
+            .selectTimeZone()
+            .clickLangDrpd()
+            .selectLang()
+            .excludeCheckBox()
+            .addUserSbmt()
+            .shouldBeVisible();
     })
 })

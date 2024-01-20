@@ -1,49 +1,77 @@
+import { th } from "@faker-js/faker";
+import FakerUtils from "../utils/fakerUtils"
+
 class AddUserPage {
 
 
-    addUserBtn() {
-        return cy.get('.hidden-phone').contains('a', 'Add user');
+    firstName = FakerUtils.generateName()
+    lastName = FakerUtils.generateSurname();
+    email = FakerUtils.generateEmail();
+    username = FakerUtils.generateUsername();
+
+
+    clickAddUserBtn() {
+        cy.get('.hidden-phone').contains('a', 'Add user').click();
+        return this;
     }
 
-    firstNameInpt() {
-        return cy.get('input[name="name"]');
+    enterFirstName() {
+        cy.get('input[name="name"]').type(this.firstName);
+        return this;
     }
-    lastNameInpt() {
-        return cy.get('input[name="surname"]');
+    enterLastName() {
+        cy.get('input[name="surname"]').type(this.lastName);
+        return this;
     }
-    emailInpt() {
-        return cy.get('input[name="email"]');
+    enterEmail() {
+        cy.get('input[name="email"]').type(this.email);
+        return this;
     }
-    userNameInpt() {
-        return cy.get('input[name="login"]');
+    enterUserName() {
+        cy.get('input[name="login"]').type(this.username);
+        return this;
     }
     descriptionInp() {
-        return cy.get('textarea[name="description"]');
+        cy.get('textarea[name="description"]').type('The best training student');
+        return this;
     }
-    userTypeDrpd() {
-        return cy.get('span.select2-arrow > b');
+    clickUserTypeDrpd() {
+        cy.get('span.select2-arrow > b').first().click();
+        return this;
     }
     selectType() {
-        return cy.contains('.select2-drop-active .select2-result-label', 'Trainer-Type');
+        cy.contains('.select2-drop-active .select2-result-label', 'Trainer-Type').click();
+        return this;
     }
     timeZoneDrpd() {
-        return cy.get('span.select2-arrow').eq(1);
+        cy.get('span.select2-arrow').eq(1).click();
+        return this;
     }
     selectTimeZone(){
-        return cy.contains('div.select2-result-label', '(GMT -10:00) Hawaii');
+        cy.contains('div.select2-result-label', '(GMT -10:00) Hawaii').click();
+        return this;
     }
-    langDrpd() {
-        return cy.get('span.select2-arrow').eq(2);
+    clickLangDrpd() {
+        cy.get('span.select2-arrow').eq(2).click();
+        return this;
     }
     selectLang() {
-        return cy.contains('div.select2-result-label', 'Deutsch (German)');
+        cy.contains('div.select2-result-label', 'Deutsch (German)').click();
+        return this;
     }
     excludeCheckBox() {
-        return cy.get('input[name="restrict_email"]')
+        cy.get('input[name="restrict_email"]').click();
+        return this;
     }
 
-    addUserSbmt() {
-        return cy.get('input[type="submit"][data-loading-text="Saving..."]')
+    clickAddUser() {
+        cy.get('input[type="submit"][data-loading-text="Saving..."]');
+        return this;
+    }
+
+    shouldBeVisible() {
+        cy.contains(this.lastName).should('be.visible')
+        return this;
     }
     
 
