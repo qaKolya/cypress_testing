@@ -4,13 +4,9 @@ import FakerUtils from "../utils/fakerUtils"
 import config from "../../../config.json"
 
 
-
-
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
-
-
 
 describe('Adding user', function(){
 
@@ -26,14 +22,7 @@ describe('Adding user', function(){
     });
 
     it('Should add ne user', () => {
-        
         const user = new AddUserPage()
-
-        
-        const lastName = FakerUtils.generateSurname();
-        const email = FakerUtils.generateEmail();
-        const username = FakerUtils.generateUsername();
-
         user.clickAddUserBtn()
             .enterFirstName()
             .enterLastName()
@@ -47,7 +36,7 @@ describe('Adding user', function(){
             .clickLangDrpd()
             .selectLang()
             .excludeCheckBox()
-            .addUserSbmt()
+            .clickAddUser()
             .shouldBeVisible();
     })
 })
