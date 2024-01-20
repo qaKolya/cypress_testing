@@ -1,6 +1,8 @@
 import AddUserPage from "../pageObject/addUserPage"
 import Login from "../pageObject/loginPage"
 import FakerUtils from "../utils/fakerUtils"
+import config from "../../../config.json"
+
 
 
 
@@ -14,12 +16,13 @@ describe('Adding user', function(){
 
     beforeEach(() => {
         const login = new Login()
-        cy.visit('https://kolya.talentlms.com/index')
-        login.emailOrUserName().type('dodryak98')
-        login.password().type('Man4ester')
-        login.loginBTN().should('be.visible').click()
-        login.toAdmin().click();
-        cy.contains('Administrator').should('be.visible');
+        cy.visit(config.baseUrl)
+        login.emailOrUserName()
+            .enterPassword()
+            .clickLoginButton()
+            .toAdmin()
+            .shouldShowAdministrator()
+            .shouldBeAdminUrl();
     });
 
     it('Should add ne user', () => {

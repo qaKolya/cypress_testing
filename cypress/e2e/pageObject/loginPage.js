@@ -1,16 +1,35 @@
+import config from "../../../config.json"
+
 class Login{
 
-    emailOrUserName(){
-        return cy.get('input[name="login"]');
+    emailOrUserName(emailUserName){
+        cy.get('input[name="login"]').type(config.defaultCredentials.username);
+        return this;
     }
-    password(){
-        return cy.get('input[type="password"]');
+    enterPassword(){
+        cy.get('input[type="password"]').type(config.defaultCredentials.password);
+        return this;
     }
-    loginBTN(){
-        return cy.get('input[name="submit"]');
+    
+    clickLoginButton() {
+        cy.get('input[name="submit"]').should('be.visible').click();
+        return this;
     }
     toAdmin(){
-        return cy.contains('Go to the Administrator dashboard');
+        cy.contains('Go to the Administrator dashboard').click();
+        return this;
     }
+
+    shouldShowAdministrator() {
+        cy.contains('Administrator').should('be.visible');
+        return this; 
+    }
+
+    shouldBeAdminUrl() {
+        cy.url().should('include', '/role:administrator');
+        return this;
+    }
+
+    
 }
 export default Login
