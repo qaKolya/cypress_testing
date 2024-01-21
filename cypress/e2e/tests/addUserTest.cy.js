@@ -1,5 +1,5 @@
 import AddUserPage from "../pageObject/addUserPage"
-import { loginUser } from "../../support/common_functions"
+import { assertUrl, loginUser } from "../../support/common_functions"
 
 
 Cypress.on('uncaught:exception', (err, runnable) => {
@@ -29,5 +29,28 @@ describe('Adding user', function(){
             .excludeCheckBox()
             .clickAddUser()
             .shouldBeVisible();
+    
+    })
+    it('Should add ne user', () => {
+        const user = new AddUserPage()
+        user.clickAddUserBtn()
+            .enterFirstName()
+            .enterLastName()
+            .enterEmail()
+            .enterUserName()
+            .descriptionInp()
+            .clickUserTypeDrpd()
+            .selectType()
+            .timeZoneDrpd()
+            .selectTimeZone()
+            .clickLangDrpd()
+            .selectLang()
+            .excludeCheckBox()
+            .clickAddUser()
+            .shouldBeVisible();
+        user.clickToInfo()
+            .clickMoreInfo()
+            .clickDelete()
+        assertUrl('https://kolya.talentlms.com/user/index')
     })
 })

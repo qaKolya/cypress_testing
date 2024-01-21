@@ -74,6 +74,21 @@ class AddUserPage {
         checkTextContains(this.lastName);
         return this;
     }
+
+    clickToInfo() {
+        cy.get('a[href*="/user/info/id:"]').contains('Info').click();
+        return this;
+    }
+    clickMoreInfo() {
+        cy.get('a.btn.dropdown-toggle.btn-primary.tl-more-options-btn').click();
+        return this;
+    }
+    
+    clickDelete() {
+        cy.contains('a', 'Delete').click();
+        cy.get('#tl-confirm-submit').click()
+        return this;
+    }
     
 
 
