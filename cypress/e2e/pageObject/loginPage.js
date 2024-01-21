@@ -24,7 +24,5 @@ class Login{
         cy.contains('Administrator').should('be.visible');
         return this; 
     }
-
-    
 }
 export default Login

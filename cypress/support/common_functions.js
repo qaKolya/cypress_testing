@@ -3,7 +3,7 @@ import config from "../../config.json";
 
 
 
-export function loginUserAndNavigate() {
+export function loginUser() {
     const login = new Login();
     cy.visit(config.baseUrl);
     login.emailOrUserName()
@@ -15,7 +15,6 @@ export function loginUserAndNavigate() {
 
 
 export function checkTextContains(expectedText) {
-    // cy.get(selector).should('contain.text', expectedText);
     cy.contains(expectedText).should('be.visible');
 }
 

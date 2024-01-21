@@ -1,7 +1,5 @@
 import AddUserPage from "../pageObject/addUserPage"
-// import Login from "../pageObject/loginPage"
-// import config from "../../../config.json"
-import { loginUserAndNavigate } from "../../support/common_functions"
+import { loginUser } from "../../support/common_functions"
 
 
 Cypress.on('uncaught:exception', (err, runnable) => {
@@ -11,7 +9,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('Adding user', function(){
 
     beforeEach(() => {
-        loginUserAndNavigate()
+        loginUser()
     });
 
     it('Should add ne user', () => {
