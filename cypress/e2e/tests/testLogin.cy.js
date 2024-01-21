@@ -1,20 +1,18 @@
 import Login from "../pageObject/loginPage"
-import config from "../../../config.json"
+import { loginUserAndNavigate } from "../../support/common_functions"
+import { checkTextContains } from "../../support/common_functions"
+import { assertUrl  } from "../../support/common_functions";
 
 
 describe('Login', function () {
+    
 
-    const login = new Login()
-
+    before(function (){
+        loginUserAndNavigate()
+    });
 
     it('Sign in', function () {
-        cy.visit(config.baseUrl)
-        login.emailOrUserName()
-            .enterPassword()
-            .clickLoginButton()
-            .toAdmin()
-            .shouldShowAdministrator()
-            .shouldBeAdminUrl();
+        assertUrl('/role:administrator');
     })
 })
 

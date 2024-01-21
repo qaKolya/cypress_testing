@@ -2,7 +2,7 @@ import config from "../../../config.json"
 
 class Login{
 
-    emailOrUserName(emailUserName){
+    emailOrUserName(){
         cy.get('input[name="login"]').type(config.defaultCredentials.username);
         return this;
     }
@@ -23,11 +23,6 @@ class Login{
     shouldShowAdministrator() {
         cy.contains('Administrator').should('be.visible');
         return this; 
-    }
-
-    shouldBeAdminUrl() {
-        cy.url().should('include', '/role:administrator');
-        return this;
     }
 
     

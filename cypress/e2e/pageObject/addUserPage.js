@@ -65,7 +65,7 @@ class AddUserPage {
     }
 
     clickAddUser() {
-        cy.get('input[type="submit"][data-loading-text="Saving..."]');
+        cy.get('input[type="submit"][data-loading-text="Saving..."]').click();
         return this;
     }
 
