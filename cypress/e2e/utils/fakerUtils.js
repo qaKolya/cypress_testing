@@ -1,4 +1,3 @@
-// import faker from 'faker'
 import { faker } from '@faker-js/faker';
 
 class FakerUtils {
@@ -23,6 +22,18 @@ class FakerUtils {
   static generatePhoneNumber() {
     return faker.phone.phoneNumber();
   } 
+
+  static generateCourseName() {
+    return faker.internet.domainName();
+  }
+
+  static generateCategory() {
+    return faker.commerce.department();
+  }
+
+  static generateDescription() {
+    return faker.commerce.productDescription();
+  }
 }
 
 export default FakerUtils;

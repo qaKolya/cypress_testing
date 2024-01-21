@@ -1,5 +1,6 @@
-import { th } from "@faker-js/faker";
 import FakerUtils from "../utils/fakerUtils"
+import { checkTextContains  } from "../../support/common_functions"
+
 
 class AddUserPage {
 
@@ -70,7 +71,7 @@ class AddUserPage {
     }
 
     shouldBeVisible() {
-        cy.contains(this.lastName).should('be.visible')
+        checkTextContains(this.lastName);
         return this;
     }
     
