@@ -27,7 +27,8 @@ describe('Adding user', function(){
             .clickLangDrpd()
             .selectLang()
             .excludeCheckBox()
-            .clickAddUser()
+        cy.handleNotification()
+        user.clickAddUser()
             .shouldBeVisible();
     
     })
@@ -46,7 +47,8 @@ describe('Adding user', function(){
             .clickLangDrpd()
             .selectLang()
             .excludeCheckBox()
-            .clickAddUser()
+        cy.handleNotification()
+        user.clickAddUser()
             .shouldBeVisible();
         user.clickToInfo()
             .clickMoreInfo()

@@ -1,4 +1,5 @@
 import AddCoursePage from "../pageObject/addCoursePage"
+import "../../support/commands"
 import { assertUrl, loginUser } from "../../support/common_functions"
 import { checkTextContains } from "../../support/common_functions"
 
@@ -22,7 +23,8 @@ describe('Adding course Test', function(){
             .clickCategoryDrpd()
             .setCategory()
             .enterDescription()
-            .clickSave()
+        cy.handleNotification()
+        course.clickSave()
         checkTextContains(course.courseName)
     })
 
@@ -32,7 +34,8 @@ describe('Adding course Test', function(){
             .clickCategoryDrpd()
             .setCategory()
             .enterDescription()
-            .clickSave()
+        cy.handleNotification()
+        course.clickSave()
         checkTextContains(course.courseName)
         course.clickCourseAfterSave()
             .clickGoToCourseContent()
@@ -48,7 +51,8 @@ describe('Adding course Test', function(){
             .enterDescription()
             .clickCode()
             .enterCode()
-            .clickSave()
+        cy.handleNotification()
+        course.clickSave()
         checkTextContains(course.courseName)
     })
 })

@@ -8,6 +8,15 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
+Cypress.Commands.add('handleNotification', () => {
+    cy.contains('A new beta version of your interface is available').should('be.visible').then((notification) => {
+      if (notification.length > 0) {
+        cy.get('span[style*="font-weight: lighter; color: #FFF; font-size: 25px;"]').click();
+      }
+    });
+  });
+
+
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
