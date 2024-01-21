@@ -6,6 +6,7 @@ class AddCoursePage {
     courseName = FakerUtils.generateCourseName();
     category = FakerUtils.generateCategory();
     description = FakerUtils.generateDescription();
+    code = FakerUtils.generateCode();
 
     clickAddCourse() {
         cy.get('.hidden-phone').contains('a', 'Add course').click();
@@ -37,8 +38,29 @@ class AddCoursePage {
         return this;
     }
 
+    clickCourseAfterSave() {
+        cy.get('a[href*="/course/edit/id:"]').contains('Course').click();
+        return this;
+    }
+
+    clickGoToCourseContent() {
+        cy.get('a.btn.btn-primary.dropdown-toggle').eq(1).click();
+        return this;
+    }
+
+    clickDelete() {
+        cy.get('#tl-delete-course').click();
+        cy.get('#tl-confirm-submit').click()
+        return this;
+    }
+
     clickCode() {
-        cy.get('#show-coursecode').click()
+        cy.get('#show-coursecode').click({force: true})
+        return this;
+    }
+
+    enterCode() {
+        cy.get('input[name="course_code"]').type(this.code);
         return this;
     }
 }

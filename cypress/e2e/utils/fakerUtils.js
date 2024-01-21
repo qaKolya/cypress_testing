@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { fa, faker } from '@faker-js/faker';
 
 class FakerUtils {
 
@@ -33,6 +33,10 @@ class FakerUtils {
 
   static generateDescription() {
     return faker.commerce.productDescription();
+  }
+
+  static generateCode() {
+    return faker.number.int();
   }
 }
 

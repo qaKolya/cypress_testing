@@ -1,5 +1,5 @@
 import AddCoursePage from "../pageObject/addCoursePage"
-import { loginUser } from "../../support/common_functions"
+import { assertUrl, loginUser } from "../../support/common_functions"
 import { checkTextContains } from "../../support/common_functions"
 
 
@@ -10,13 +10,13 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 describe('Adding course Test', function(){
 
+    const course = new AddCoursePage();
+    
     beforeEach(() => {
         loginUser()
     });
 
     it('Add simple course', () => {
-        const course = new AddCoursePage();
-
         course.clickAddCourse()
             .enterCourseName()
             .clickCategoryDrpd()
@@ -26,15 +26,30 @@ describe('Adding course Test', function(){
         checkTextContains(course.courseName)
     })
 
-    it('Add course with code', () => {
-        const course = new AddCoursePage();
+    it('Add course and delete', () => {
+        course.clickAddCourse()
+            .enterCourseName()
+            .clickCategoryDrpd()
+            .setCategory()
+            .enterDescription()
+            .clickSave()
+        checkTextContains(course.courseName)
+        course.clickCourseAfterSave()
+            .clickGoToCourseContent()
+            .clickDelete()
+        assertUrl('https://kolya.talentlms.com/course/index')
+    })
 
+    it('Add course with code', () => {
         course.clickAddCourse()
             .enterCourseName()
             .clickCategoryDrpd()
             .setCategory()
             .enterDescription()
             .clickCode()
+            .enterCode()
+            .clickSave()
+        checkTextContains(course.courseName)
     })
 })
 
